@@ -12,15 +12,14 @@ export default function Search({ placeholder }: { placeholder: string }) {
 	function handleSearch(term: string) {
 		console.log(`Searching... ${term}`);
 
-		const handleSearch = useDebouncedCallback((term) => {
-			const params = new URLSearchParams(searchParams);
-			if (term) {
-				params.set("query", term);
-			} else {
-				params.delete("query");
-			}
-			replace(`${pathname}?${params.toString()}`);
-		}, 300);
+		const params = new URLSearchParams(searchParams);
+		params.set("page", "1");
+		if (term) {
+			params.set("query", term);
+		} else {
+			params.delete("query");
+		}
+		replace(`${pathname}?${params.toString()}`);
 	}
 
 	return (
